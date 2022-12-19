@@ -1,0 +1,22 @@
+{
+  "name": "faellesfilm",
+  "version": "1.0.0",
+  "description": "se film sammen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k3ring/FaellesFilm.git"
+  },
+  "keywords": [
+    "websockets"
+  ],
+  "author": "JKN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k3ring/FaellesFilm/issues"
+  },
+  "homepage": "https://github.com/k3ring/FaellesFilm#readme"
+}
