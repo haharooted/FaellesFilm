@@ -9,7 +9,7 @@ socket_forb = [];
 brugere = [];
 rum = [];
 bruger_rum = {};
-var given_room = '';
+var givet_rum = '';
 
 app.use(express.static(__dirname + '/')); // serve vores app
 
@@ -23,4 +23,9 @@ app.get('/getvideos', function(req, res) {
       });
       res.json(files_seen)
     });
+});
+
+app.get('/:room', function(req, res) {
+    givet_rum = req.params.room
+    res.sendFile(__dirname + '/index.html');
 });
