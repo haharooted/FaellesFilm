@@ -155,3 +155,65 @@
         });
 
         
+
+        if (data.user != last_user) {
+            let realval = $besked.val() + new Date($.now());
+            console.log(realval)
+            decryptedMsgToString = ''
+            if($('#beskedKey').val()) {
+                decryptedMsg = CryptoJS.AES.decrypt(data.msg, $('#beskedKey').val());
+                decryptedMsgToStringBF = decryptedMsg.toString(CryptoJS.enc.Utf8)
+                if (decryptedMsgToStringBF) {
+                    decryptedMsgToString = decryptedMsgToStringBF
+                } else {
+                    decryptedMsgToString = '~~~~~Krypteret, indtast hemmelig nøgle~~~~~'
+                }
+                console.log("decrypted: ", decryptedMsg, decryptedMsg.toString(CryptoJS.enc.Utf8))
+            }
+            else {
+                decryptedMsg = CryptoJS.AES.decrypt(data.msg, "default");
+                decryptedMsgToStringBF = decryptedMsg.toString(CryptoJS.enc.Utf8)
+                if (decryptedMsgToStringBF) {
+                    decryptedMsgToString = decryptedMsgToStringBF
+                } else {
+                    decryptedMsgToString = '~~~~~Krypteret, indtast hemmelig nøgle~~~~~'
+                }
+                console.log("decrypted: ", decryptedMsg, decryptedMsg.toString(CryptoJS.enc.Utf8))
+            }
+            var encodedMsg = decryptedMsgToString.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            $chat.append('<div class="well well-sm besked-well"><strong>' + data.user + '</strong>: ' + encodedMsg + '</div>');
+        }
+        else {
+            decryptedMsgToString = ''
+            if($('#beskedKey').val()) {
+                decryptedMsg = CryptoJS.AES.decrypt(data.msg, $('#beskedKey').val());
+                decryptedMsgToStringBF = decryptedMsg.toString(CryptoJS.enc.Utf8)
+                if (decryptedMsgToStringBF) {
+                    decryptedMsgToString = decryptedMsgToStringBF
+                } else {
+                    decryptedMsgToString = '~~~~~Krypteret, indtast hemmelig nøgle~~~~~'
+                }
+                console.log("decrypted: ", decryptedMsg, decryptedMsg.toString(CryptoJS.enc.Utf8))
+            }
+            else {
+                decryptedMsg = CryptoJS.AES.decrypt(data.msg, "default");
+                decryptedMsgToStringBF = decryptedMsg.toString(CryptoJS.enc.Utf8)
+                if (decryptedMsgToStringBF) {
+                    decryptedMsgToString = decryptedMsgToStringBF
+                } else {
+                    decryptedMsgToString = '~~~~~Krypteret, indtast hemmelig nøgle~~~~~'
+                }
+                console.log("decrypted: ", decryptedMsg, decryptedMsg.toString(CryptoJS.enc.Utf8))
+            }
+            encodedMsg = ''
+            if(decryptedMsgToString) {
+                console.log("encodedmsg true: ", encodedMsg )
+                encodedMsg = decryptedMsgToString.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            } else {
+                console.log("encodedmsg false: ", encodedMsg )
+                encodedMsg = '~~~~~Krypteret, indtast hemmelig nøgle~~~~~'
+            }
+            last_div.innerHTML = last_div.innerHTML + " <br> " + encodedMsg
+        }
+        $('div#chat').scrollTop($('div#chat')[0].scrollHeight)
+    });
