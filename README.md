@@ -8,7 +8,7 @@
 </div>
 
   <a href="https://github.com/k3ring/faellesfilm">
-    <img src="img/Screenshot from 2022-12-20 19-59-00.png" alt="test" width="80" height="80">
+    <img src="img/Screenshot from 2022-12-20 19-59-00.png" alt="test">
   </a>
 
 ### Built With
