@@ -4,26 +4,18 @@
   <a href="https://github.com/k3ring/faellesfilm">
     <img src="img/logo.png" alt="Logo" width="80" height="80">
   </a>
-
 <h3 align="center">Faelles-Film</h3>
-
-
-## About The Project
 
 [![Fælles-Film][product-screenshot]](https://example.com)
 
 ### Built With
 
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+[![Bootstrap][Bootstrap.com]][Bootstrap-url]
+[![JQuery][JQuery.com]][JQuery-url]
 
+### About
 
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+This application is built around Node.JS and Web-Sockets. It makes it possible to synchronize a video stream (HTML5 MP4 / DASH) on different clients using Web Sockets. The DASH syncing part is quite buggy for really short (5s) videoes for some reason.
 
 ### Installation
 
