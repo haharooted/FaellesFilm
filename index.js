@@ -34,3 +34,6 @@ app.get('/api/rtt', (req, res) => {
     const currentTime = new Date().toISOString();
     res.send({ time: currentTime });
   });
+
+  io.sockets.on('connection', function(socket) {
+    connections.push(socket); //forbind socket
