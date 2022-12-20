@@ -116,3 +116,23 @@
             <p class="lead">Computernetværk & Distribuerede systemer!</p>
             <p> App til at demonstrere sockets</p>
         </div>
+        $(function() {
+            $('#toggle-event').change(function() {
+                mode = $(this).prop('checked')
+                console.log(mode)
+
+                if(mode == true) {
+                console.log("skifter til MPEG-DASH")
+                var video,
+                    player,
+                    url = 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd';
+        
+                video = document.querySelector('video');
+                player = dashjs.MediaPlayer().create();
+                player.initialize(video, url, false);
+                } else {
+
+                console.log("mp4...")
+                }
+            })
+          })
