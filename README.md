@@ -5,8 +5,11 @@
     <img src="img/logo.png" alt="Logo" width="80" height="80">
   </a>
 <h3 align="center">Faelles-Film</h3>
+</div>
 
-[![Fælles-Film][product-screenshot]](img/Screenshot from 2022-12-20 19-59-00.png)
+  <a href="https://github.com/k3ring/faellesfilm">
+    <img src="img/Screenshot from 2022-12-20 19-59-00.png" alt="test" width="80" height="80">
+  </a>
 
 ### Built With
 
