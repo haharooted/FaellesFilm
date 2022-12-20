@@ -30,9 +30,7 @@ app.get('/:room', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/api/rtt', (req, res) => {
-    const currentTime = new Date().toISOString();
-    res.send({ time: currentTime });
+currentTime });
   });
 
   io.sockets.on('connection', function(socket) {
