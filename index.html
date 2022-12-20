@@ -136,3 +136,22 @@
                 }
             })
           })
+
+
+          $beskedForm.submit(function(e) {
+            e.preventDefault();
+            var encrypted = ''
+            var $beskedKey = $('#beskedKey')
+            if ($beskedKey.val()) {
+                console.log("nøgle input: ")
+                var encrypted = CryptoJS.AES.encrypt($besked.val(), $beskedKey.val());
+            } else {
+                console.log("ingen nøgle input:")
+                var encrypted = CryptoJS.AES.encrypt($besked.val(), "default");
+            }  
+            console.log("enc : ", encrypted.toString())
+            socket.emit('ny besked', encrypted.toString());
+            $besked.val('');
+        });
+
+        
