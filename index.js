@@ -13,7 +13,7 @@ var givet_rum = '';
 
 app.use(express.static(__dirname + '/')); // serve vores app
 
-// endpoint to GET all movies
+// fetch alle videoer
 app.get('/getvideos', function(req, res) {
     dir = 'movies/'
     files_seen = []
