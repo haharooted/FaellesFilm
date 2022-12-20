@@ -8,9 +8,6 @@
 <h3 align="center">Faelles-Film</h3>
 
 
-
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 
 [![Fælles-Film][product-screenshot]](https://example.com)
