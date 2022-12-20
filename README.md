@@ -6,7 +6,7 @@
   </a>
 <h3 align="center">Faelles-Film</h3>
 
-[![Fælles-Film][product-screenshot]](https://example.com)
+[![Fælles-Film][product-screenshot]](img/Screenshot from 2022-12-20 19-59-00.png)
 
 ### Built With
 
