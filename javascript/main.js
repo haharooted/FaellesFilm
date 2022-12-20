@@ -1,5 +1,3 @@
-var afspiller = 0
-
 function synkroniserVideo(rumnummer) {
     var tidNu = 0
     var state
@@ -7,12 +5,12 @@ function synkroniserVideo(rumnummer) {
     console.log("Syncing: rumnummer: ", rumnummer)
 
     tidNu = primVideoElem.tidNuPlayer;
-    e = primVideoElem.paused;
+    state = primVideoElem.paused;
 
     socket.emit('synk player', {
         rum: rumnummer,
         time: tidNu,
-        state: e,
+        state: state,
         urlTilVid: urlTilVid
     });
 }
@@ -44,7 +42,7 @@ function skiftVid(rumnummer, rawId) {
     }
 }
 
-socket.on('fetchInfo', function(data) {
+socket.on('fetchInfo', function(input) {
     socket.emit('gensynkroniser host', {});
 });
 
@@ -52,9 +50,9 @@ var rumnummer = 1
 var id = "333333333"
 
 // Syncs the video client
-socket.on('synkroniserVideoClient', function(data) {
-    var tidNu = data.time
-    var e = data.state
+socket.on('synkroniserVideoClient', function(input) {
+    var tidNu = input.time
+    var e = input.state
     primVideoElem.tidNuPlayer = tidNu
     if (e) {
         primVideoElem.pause()
@@ -64,8 +62,8 @@ socket.on('synkroniserVideoClient', function(data) {
 
 });
 
-socket.on('skiftKlientTilVideo', function(data) {
-    var urlTilVid = data.urlTilVid;
+socket.on('skiftKlientTilVideo', function(input) {
+    var urlTilVid = input.urlTilVid;
     socket.emit('get video', function(id) {
         urlTilVid = id
         id = urlTilVid
@@ -77,12 +75,10 @@ socket.on('skiftKlientTilVideo', function(data) {
 
 });
 
-var afspiller = 0
 
-
-socket.on('afspillerStats', function(data) {
-    var rumnummer = data.rum
-    var e = data.caller
+socket.on('afspillerStats', function(input) {
+    var rumnummer = input.rum
+    var e = input.caller
 
     var tidNu = primVideoElem.tidNuPlayer
     var state = primVideoElem.paused
@@ -94,46 +90,46 @@ socket.on('afspillerStats', function(data) {
     });
 });
 
-socket.on('makePlayerNy', function(data) {
-    var html5 = document.getElementById('playerOmroede');
-    html5.style.display = 'block';
+socket.on('makePlayerNy', function(input) {
+    var hPlayer = document.getElementById('playerOmroede');
+    hPlayer.style.display = 'block';
 });
 
 var host = false
 
-socket.on('hNyEjer', function(data) {
+socket.on('hNyEjer', function(input) {
     host = true
 });
-socket.on('unhNyEjer', function(data) {
+socket.on('unhNyEjer', function(input) {
     host = false
 });
-socket.on('fetchInfo', function(data) {
+socket.on('fetchInfo', function(input) {
     socket.emit('gensynkroniser host', {});
 });
-socket.on('synkroniserNuvHost', function(data) {
+socket.on('synkroniserNuvHost', function(input) {
     synkroniserVideo(rumnummer)
 });
 
 // Nyt ejer navn
-socket.on('nytEjerNavn', function(data) {
-    var user = data.brugernavn
-    var hostlabel = document.getElementById('hostlabel') // nyt label
-    hostlabel.innerHTML = "<i class=\"fas fa-plus\"></i> Følgende bruger styrer afspilleren: " + '"' + user + '"'
+socket.on('nytEjerNavn', function(input) {
+    var user = input.brugernavn
+    var brugerEjerTag = document.getElementById('brugerEjerTag') // nyt label
+    brugerEjerTag.innerHTML = "<i class=\"fas fa-plus\"></i> Følgende bruger styrer afspilleren: " + '"' + user + '"'
 
 })
 
-socket.on('configNyHostDiscon', function(data) {
-    changeHost(data.rumnummer)
+socket.on('configNyHostDiscon', function(input) {
+    changeHost(input.rumnummer)
 })
 
-function getHostData(rumnummer) {
+function getHostinput(rumnummer) {
     socket.emit('hostStats', {
         rum: rumnummer
     });
 }
 
-socket.on('sammenlignEjer', function(data) {
-    var hostTime = data.tidNu
+socket.on('sammenlignEjer', function(input) {
+    var hostTime = input.tidNu
     var tidNu = primVideoElem.tidNuPlayer
     if (tidNu < hostTime - 2 || tidNu > hostTime + 2) {
         console.log("syncz")
@@ -141,15 +137,13 @@ socket.on('sammenlignEjer', function(data) {
 });
 
 
-var afspiller = 0
-
 function playOther(rumnummer) {
     socket.emit('play other', {
         rum: rumnummer
     });
 }
 
-socket.on('justPlay', function(data) {
+socket.on('justPlay', function(input) {
     if (primVideoElem.paused) {
         primVideoElem.play();
     }
@@ -161,7 +155,7 @@ function pausePlaya(rumnummer) {
     });
 }
 
-socket.on('pauseVid', function(data) {
+socket.on('pauseVid', function(input) {
     primVideoElem.pause()
 });
 
@@ -172,8 +166,8 @@ function nytTidspunktStandard(rumnummer, tidNu) {
     });
 }
 
-socket.on('soeg', function(data) {
-    tidNu = data.time
+socket.on('soeg', function(input) {
+    tidNu = input.time
     var clientTime = primVideoElem.tidNuPlayer
     if (clientTime < tidNu - .2 || clientTime > tidNu + .2) {
         primVideoElem.tidNuPlayer = tidNu
@@ -182,12 +176,11 @@ socket.on('soeg', function(data) {
 
 
 var primVideoElem = document.querySelector('video');
-var afspiller = 0
 primVideoElem.addEventListener("play", function(e) {
     if (host) {
         playOther(rumnummer)
     } else {
-        getHostData(rumnummer)
+        getHostinput(rumnummer)
     }
 })
 primVideoElem.addEventListener("pause", function(e) {
