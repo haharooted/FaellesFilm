@@ -29,3 +29,8 @@ app.get('/:room', function(req, res) {
     givet_rum = req.params.room
     res.sendFile(__dirname + '/index.html');
 });
+
+app.get('/api/rtt', (req, res) => {
+    const currentTime = new Date().toISOString();
+    res.send({ time: currentTime });
+  });
