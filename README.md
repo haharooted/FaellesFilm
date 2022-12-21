@@ -40,18 +40,11 @@ This application is built around Node.JS and Web-Sockets. It makes it possible t
 
 ## Features
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [X] Video streaming sync 
+- [X] E-2-E Encrypted chat app
+- [X] DASH Video streaming
+    - [X] Syncing DASH video streams
 
-
-
-# Inspirations 
-
-* []()
-* []()
-* []()
 
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
